@@ -10,6 +10,7 @@ export default function DetailsPokemons({ name }: Props): JSX.Element {
   if (isFallback) {
     return <p>carregando...</p>;
   }
+
   return <h1>Hello {name}</h1>;
 }
 
@@ -22,6 +23,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       params: { name: result.name },
     };
   });
+
   return {
     paths: paths,
     fallback: true,
@@ -34,6 +36,7 @@ export const getStaticProps: GetStaticProps = async context => {
       `https://pokeapi.co/api/v2/pokemon-species/${context.params.name}`,
     )
   ).json();
+
   return {
     props: data,
   };
